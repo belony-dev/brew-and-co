@@ -81,7 +81,7 @@ export default function HomePage() {
           priority
         />
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-espresso-900/65 via-espresso-900/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-espresso-900/65 via-espresso-900/35 to-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-xl">

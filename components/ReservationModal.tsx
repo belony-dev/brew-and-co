@@ -32,10 +32,18 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (open) {
-      dialog.showModal();
+      try {
+        dialog.showModal();
+      } catch {
+        dialog.setAttribute("open", "");
+      }
       setStatus("idle");
     } else {
-      dialog.close();
+      try {
+        dialog.close();
+      } catch {
+        dialog.removeAttribute("open");
+      }
     }
   }, [open]);
 
