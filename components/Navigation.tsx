@@ -58,6 +58,7 @@ export default function Navigation() {
 
           {/* Desktop CTA */}
           <button
+            type="button"
             onClick={() => setModalOpen(true)}
             className="hidden md:flex items-center gap-2 bg-caramel-500 hover:bg-caramel-600 text-white font-semibold text-[0.9rem] px-5 py-2.5 rounded-full transition-all duration-150 hover:-translate-y-px hover:shadow-md shrink-0"
           >
@@ -99,6 +100,7 @@ export default function Navigation() {
               );
             })}
             <button
+              type="button"
               onClick={() => { setMobileOpen(false); setModalOpen(true); }}
               className="mt-2 bg-caramel-500 text-white font-semibold px-4 py-3 rounded-full text-[0.95rem] text-center"
             >

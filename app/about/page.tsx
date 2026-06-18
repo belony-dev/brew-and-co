@@ -210,7 +210,7 @@ export default function AboutPage() {
               Come See for Yourself
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {galleryImages.map((img) => (
               <div
                 key={img.src}

@@ -78,7 +78,7 @@ export default function HomePage() {
           alt="Belo'Coffee interior — warm morning light, coffee bar in full swing"
           fill
           className="object-cover object-center"
-          preload={true as never}
+          priority
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-espresso-900/65 via-espresso-900/35 to-transparent" />

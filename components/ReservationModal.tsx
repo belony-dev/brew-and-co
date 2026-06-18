@@ -57,7 +57,8 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
   return (
     <dialog
       ref={dialogRef}
-      onClose={onClose}
+      onClose={handleClose}
+      aria-labelledby="reservation-title"
       className="w-full max-w-md rounded-2xl bg-espresso-800 shadow-xl m-auto"
     >
       <div className="px-7 py-7">
@@ -65,7 +66,7 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
           /* Success state */
           <div className="flex flex-col items-center text-center py-6">
             <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-5">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
@@ -79,6 +80,7 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
               Party of <strong className="text-white">{form.partySize}</strong> on <strong className="text-white">{form.date}</strong> at <strong className="text-white">{form.time}</strong>. See you soon!
             </p>
             <button
+              type="button"
               onClick={handleClose}
               className="bg-caramel-500 hover:bg-caramel-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition-colors"
             >
@@ -90,7 +92,7 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
           <>
             <div className="flex items-start justify-between mb-6">
               <div>
-                <h2 className="font-display text-2xl font-bold text-white leading-tight">
+                <h2 id="reservation-title" className="font-display text-2xl font-bold text-white leading-tight">
                   Reserve a Table
                 </h2>
                 <p className="text-white/50 text-sm mt-1">
@@ -98,6 +100,7 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
                 </p>
               </div>
               <button
+                type="button"
                 onClick={handleClose}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors -mt-1"
                 aria-label="Close"
@@ -108,10 +111,11 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-1.5">
+                <label htmlFor="res-name" className="block text-sm font-medium text-white/80 mb-1.5">
                   Full Name <span className="text-coral-500">*</span>
                 </label>
                 <input
+                  id="res-name"
                   type="text"
                   required
                   placeholder="e.g. Jane Doe"
@@ -122,10 +126,11 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-1.5">
+                <label htmlFor="res-party" className="block text-sm font-medium text-white/80 mb-1.5">
                   Party Size
                 </label>
                 <select
+                  id="res-party"
                   value={form.partySize}
                   onChange={(e) => setForm({ ...form, partySize: e.target.value })}
                   className={inputClass}
@@ -140,10 +145,11 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium text-white/80 mb-1.5">
+                  <label htmlFor="res-date" className="block text-sm font-medium text-white/80 mb-1.5">
                     Date <span className="text-coral-500">*</span>
                   </label>
                   <input
+                    id="res-date"
                     type="date"
                     required
                     min={today}
@@ -153,10 +159,11 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white/80 mb-1.5">
+                  <label htmlFor="res-time" className="block text-sm font-medium text-white/80 mb-1.5">
                     Time <span className="text-coral-500">*</span>
                   </label>
                   <select
+                    id="res-time"
                     value={form.time}
                     onChange={(e) => setForm({ ...form, time: e.target.value })}
                     className={inputClass}
