@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Fonts */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* Cream */
+  --color-cream-50:  #FDF8F0;
+  --color-cream-100: #F9F0E0;
+  --color-cream-200: #F2E6D0;
+  --color-cream-300: #E8D5B7;
+  --color-cream-400: #D9C09A;
+  --color-cream-500: #C9A97E;
+
+  /* Espresso */
+  --color-espresso-50:  #F5EDE8;
+  --color-espresso-100: #E0C8BA;
+  --color-espresso-200: #C9A28E;
+  --color-espresso-300: #A87660;
+  --color-espresso-400: #7A4530;
+  --color-espresso-500: #5C3220;
+  --color-espresso-600: #3F2010;
+  --color-espresso-700: #2D160A;
+  --color-espresso-800: #1A0D08;
+  --color-espresso-900: #0D0604;
+
+  /* Caramel */
+  --color-caramel-300: #E8B87A;
+  --color-caramel-400: #D4904A;
+  --color-caramel-500: #C4693A;
+  --color-caramel-600: #A8522A;
+  --color-caramel-700: #8C3E1C;
+
+  /* Coral */
+  --color-coral-300: #F4A090;
+  --color-coral-400: #F07860;
+  --color-coral-500: #E86048;
+  --color-coral-600: #C84A32;
+
+  /* Amber-bc */
+  --color-amber-bc-300: #F0CC7A;
+  --color-amber-bc-400: #E8B85A;
+  --color-amber-bc-500: #D4A347;
+  --color-amber-bc-600: #B88030;
+
+  /* Sage */
+  --color-sage-300: #B8C89A;
+  --color-sage-400: #9BAB7A;
+  --color-sage-500: #7B8B5A;
+  --color-sage-600: #5A6A42;
+
+  /* Rose-bc */
+  --color-rose-bc-300: #E8AAC0;
+  --color-rose-bc-400: #D98AA0;
+  --color-rose-bc-500: #C96B8A;
+  --color-rose-bc-600: #A84E6E;
+
+  /* Semantic backgrounds */
+  --color-bg-page:     #F2E6D0;
+  --color-bg-elevated: #FDF8F0;
+  --color-bg-card:     #FFFFFF;
+  --color-bg-dark:     #1A0D08;
+  --color-bg-muted:    #F9F0E0;
+
+  /* Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-3xl:  32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 2px rgba(26, 13, 8, 0.06);
+  --shadow-sm:  0 2px 4px rgba(26, 13, 8, 0.08), 0 1px 2px rgba(26, 13, 8, 0.04);
+  --shadow-md:  0 4px 12px rgba(26, 13, 8, 0.10), 0 2px 4px rgba(26, 13, 8, 0.06);
+  --shadow-lg:  0 8px 24px rgba(26, 13, 8, 0.12), 0 4px 8px rgba(26, 13, 8, 0.08);
+  --shadow-xl:  0 16px 40px rgba(26, 13, 8, 0.14), 0 8px 16px rgba(26, 13, 8, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Base ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F2E6D0;
+  color: #1A0D08;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Line-clamp utility ───────────────────────── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Dialog reset ────────────────────────────── */
+dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+dialog::backdrop {
+  background: rgba(26, 13, 8, 0.55);
+  backdrop-filter: blur(4px);
 }

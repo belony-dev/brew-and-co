@@ -1,0 +1,323 @@
+/*
+ * Brew & Co — Design Tokens
+ * Version: 1.0.0
+ *
+ * Two layers:
+ *   1. Raw tokens   — --bc-* custom props, usable in any CSS file
+ *   2. Tailwind v4  — @theme block to copy/import into globals.css
+ *
+ * Fonts required (add to layout.tsx):
+ *   import { Playfair_Display, DM_Sans } from "next/font/google"
+ */
+
+/* ═══════════════════════════════════════════════════
+   RAW TOKENS  (--bc- prefix, source of truth)
+═══════════════════════════════════════════════════ */
+
+:root {
+
+  /* ─── COLOR SCALES ─────────────────────────────── */
+
+  /* Cream — page backgrounds, card surfaces */
+  --bc-cream-50:  #FDF8F0;
+  --bc-cream-100: #F9F0E0;
+  --bc-cream-200: #F2E6D0;   /* ← main page background */
+  --bc-cream-300: #E8D5B7;
+  --bc-cream-400: #D9C09A;
+  --bc-cream-500: #C9A97E;
+
+  /* Espresso — text, dark UI, buttons */
+  --bc-espresso-50:  #F5EDE8;
+  --bc-espresso-100: #E0C8BA;
+  --bc-espresso-200: #C9A28E;
+  --bc-espresso-300: #A87660;
+  --bc-espresso-400: #7A4530;
+  --bc-espresso-500: #5C3220;
+  --bc-espresso-600: #3F2010;
+  --bc-espresso-700: #2D160A;
+  --bc-espresso-800: #1A0D08;   /* ← primary text + dark button */
+  --bc-espresso-900: #0D0604;
+
+  /* Caramel — primary accent, promotional CTA */
+  --bc-caramel-300: #E8B87A;
+  --bc-caramel-400: #D4904A;
+  --bc-caramel-500: #C4693A;   /* ← primary accent */
+  --bc-caramel-600: #A8522A;
+  --bc-caramel-700: #8C3E1C;
+
+  /* Coral — hot drinks, energetic elements */
+  --bc-coral-300: #F4A090;
+  --bc-coral-400: #F07860;
+  --bc-coral-500: #E86048;   /* ← hot drinks category */
+  --bc-coral-600: #C84A32;
+  --bc-coral-700: #A03420;
+
+  /* Amber — caramel drinks, golden warmth */
+  --bc-amber-300: #F0CC7A;
+  --bc-amber-400: #E8B85A;
+  --bc-amber-500: #D4A347;   /* ← warm/caramel drinks */
+  --bc-amber-600: #B88030;
+  --bc-amber-700: #9A6018;
+
+  /* Sage — tea, cold drinks, calm */
+  --bc-sage-300: #B8C89A;
+  --bc-sage-400: #9BAB7A;
+  --bc-sage-500: #7B8B5A;   /* ← tea / drinks category */
+  --bc-sage-600: #5A6A42;
+  --bc-sage-700: #3C4A28;
+
+  /* Rose — bakery, specialty, pastry */
+  --bc-rose-300: #E8AAC0;
+  --bc-rose-400: #D98AA0;
+  --bc-rose-500: #C96B8A;   /* ← bakery / specialty */
+  --bc-rose-600: #A84E6E;
+  --bc-rose-700: #883454;
+
+  /* ─── SEMANTIC ALIASES ──────────────────────────── */
+
+  --bc-bg-page:       var(--bc-cream-200);
+  --bc-bg-elevated:   var(--bc-cream-50);
+  --bc-bg-card:       #FFFFFF;
+  --bc-bg-dark:       var(--bc-espresso-800);
+  --bc-bg-muted:      var(--bc-cream-100);
+
+  --bc-text-primary:   var(--bc-espresso-800);
+  --bc-text-secondary: var(--bc-espresso-400);
+  --bc-text-muted:     var(--bc-espresso-200);
+  --bc-text-inverse:   #FFFFFF;
+  --bc-text-accent:    var(--bc-caramel-500);
+
+  --bc-border-subtle:  rgba(26, 13, 8, 0.07);
+  --bc-border-default: rgba(26, 13, 8, 0.14);
+  --bc-border-strong:  rgba(26, 13, 8, 0.28);
+
+  /* ─── TYPOGRAPHY ────────────────────────────────── */
+
+  --bc-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --bc-font-sans:    "DM Sans", system-ui, -apple-system, sans-serif;
+  --bc-font-mono:    "JetBrains Mono", "Fira Code", Consolas, monospace;
+
+  /* Size scale */
+  --bc-text-xs:   0.75rem;    /*  12px */
+  --bc-text-sm:   0.875rem;   /*  14px */
+  --bc-text-md:   1rem;       /*  16px */
+  --bc-text-lg:   1.125rem;   /*  18px */
+  --bc-text-xl:   1.25rem;    /*  20px */
+  --bc-text-2xl:  1.5rem;     /*  24px */
+  --bc-text-3xl:  1.875rem;   /*  30px */
+  --bc-text-4xl:  2.25rem;    /*  36px */
+  --bc-text-5xl:  3rem;       /*  48px */
+  --bc-text-6xl:  3.75rem;    /*  60px */
+  --bc-text-7xl:  4.5rem;     /*  72px */
+
+  /* Weight */
+  --bc-weight-light:     300;
+  --bc-weight-regular:   400;
+  --bc-weight-medium:    500;
+  --bc-weight-semibold:  600;
+  --bc-weight-bold:      700;
+  --bc-weight-extrabold: 800;
+  --bc-weight-black:     900;
+
+  /* Line height */
+  --bc-leading-tight:   1.2;
+  --bc-leading-snug:    1.35;
+  --bc-leading-normal:  1.5;
+  --bc-leading-relaxed: 1.65;
+  --bc-leading-loose:   1.8;
+
+  /* Letter spacing */
+  --bc-tracking-tighter: -0.03em;
+  --bc-tracking-tight:   -0.015em;
+  --bc-tracking-normal:  0em;
+  --bc-tracking-wide:    0.05em;
+  --bc-tracking-wider:   0.1em;
+  --bc-tracking-widest:  0.2em;
+
+  /* ─── SPACING (4px base) ───────────────────────── */
+
+  --bc-space-0:   0px;
+  --bc-space-px:  1px;
+  --bc-space-1:   0.25rem;   /*   4px */
+  --bc-space-2:   0.5rem;    /*   8px */
+  --bc-space-3:   0.75rem;   /*  12px */
+  --bc-space-4:   1rem;      /*  16px */
+  --bc-space-5:   1.25rem;   /*  20px */
+  --bc-space-6:   1.5rem;    /*  24px */
+  --bc-space-8:   2rem;      /*  32px */
+  --bc-space-10:  2.5rem;    /*  40px */
+  --bc-space-12:  3rem;      /*  48px */
+  --bc-space-14:  3.5rem;    /*  56px */
+  --bc-space-16:  4rem;      /*  64px */
+  --bc-space-20:  5rem;      /*  80px */
+  --bc-space-24:  6rem;      /*  96px */
+  --bc-space-32:  8rem;      /* 128px */
+  --bc-space-40:  10rem;     /* 160px */
+  --bc-space-48:  12rem;     /* 192px */
+  --bc-space-64:  16rem;     /* 256px */
+
+  /* ─── BORDER RADIUS ─────────────────────────────── */
+
+  --bc-radius-none: 0px;
+  --bc-radius-sm:   4px;
+  --bc-radius-md:   8px;
+  --bc-radius-lg:   12px;
+  --bc-radius-xl:   16px;
+  --bc-radius-2xl:  24px;
+  --bc-radius-3xl:  32px;
+  --bc-radius-full: 9999px;
+
+  /* ─── SHADOWS (warm-tinted) ─────────────────────── */
+
+  --bc-shadow-xs:  0 1px 2px rgba(26, 13, 8, 0.06);
+  --bc-shadow-sm:  0 2px 4px rgba(26, 13, 8, 0.08),  0 1px 2px rgba(26, 13, 8, 0.04);
+  --bc-shadow-md:  0 4px 12px rgba(26, 13, 8, 0.10), 0 2px 4px rgba(26, 13, 8, 0.06);
+  --bc-shadow-lg:  0 8px 24px rgba(26, 13, 8, 0.12), 0 4px 8px rgba(26, 13, 8, 0.08);
+  --bc-shadow-xl:  0 16px 40px rgba(26, 13, 8, 0.14), 0 8px 16px rgba(26, 13, 8, 0.08);
+  --bc-shadow-2xl: 0 24px 64px rgba(26, 13, 8, 0.18), 0 12px 24px rgba(26, 13, 8, 0.10);
+
+  /* ─── TRANSITIONS ───────────────────────────────── */
+
+  --bc-duration-instant:  50ms;
+  --bc-duration-fast:    150ms;
+  --bc-duration-normal:  250ms;
+  --bc-duration-slow:    400ms;
+  --bc-duration-slower:  600ms;
+
+  --bc-ease-standard:    cubic-bezier(0.4, 0, 0.2, 1);
+  --bc-ease-decelerate:  cubic-bezier(0, 0, 0.2, 1);
+  --bc-ease-accelerate:  cubic-bezier(0.4, 0, 1, 1);
+  --bc-ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ─── Z-INDEX ────────────────────────────────────── */
+
+  --bc-z-base:     0;
+  --bc-z-raised:   10;
+  --bc-z-dropdown: 100;
+  --bc-z-sticky:   200;
+  --bc-z-overlay:  300;
+  --bc-z-modal:    400;
+  --bc-z-toast:    500;
+  --bc-z-tooltip:  600;
+
+  /* ─── COMPONENT SIZES ───────────────────────────── */
+
+  --bc-btn-h-sm:  2rem;     /* 32px */
+  --bc-btn-h-md:  2.625rem; /* 42px */
+  --bc-btn-h-lg:  3.25rem;  /* 52px */
+
+  --bc-input-h-sm:  2.25rem;  /* 36px */
+  --bc-input-h-md:  2.875rem; /* 46px */
+  --bc-input-h-lg:  3.5rem;   /* 56px */
+
+  --bc-nav-h:      4.25rem;  /* 68px */
+  --bc-sidebar-w:  15rem;    /* 240px */
+
+  --bc-category-icon-sm: 3rem;   /* 48px */
+  --bc-category-icon-md: 4rem;   /* 64px */
+  --bc-category-icon-lg: 5rem;   /* 80px */
+
+  /* ─── BREAKPOINTS (reference only — use in JS) ── */
+  /*
+    sm:  640px
+    md:  768px
+    lg:  1024px
+    xl:  1280px
+    2xl: 1536px
+  */
+}
+
+
+/* ═══════════════════════════════════════════════════
+   TAILWIND CSS v4  —  @theme integration
+   ───────────────────────────────────────────────
+   Copy this block into app/globals.css after the
+   @import "tailwindcss"; line to generate all
+   Tailwind utilities from these tokens.
+═══════════════════════════════════════════════════ */
+
+@theme {
+
+  /* Fonts */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:    "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* ── Colors: cream ── */
+  --color-cream-50:  #FDF8F0;
+  --color-cream-100: #F9F0E0;
+  --color-cream-200: #F2E6D0;
+  --color-cream-300: #E8D5B7;
+  --color-cream-400: #D9C09A;
+  --color-cream-500: #C9A97E;
+
+  /* ── Colors: espresso ── */
+  --color-espresso-50:  #F5EDE8;
+  --color-espresso-100: #E0C8BA;
+  --color-espresso-200: #C9A28E;
+  --color-espresso-300: #A87660;
+  --color-espresso-400: #7A4530;
+  --color-espresso-500: #5C3220;
+  --color-espresso-600: #3F2010;
+  --color-espresso-700: #2D160A;
+  --color-espresso-800: #1A0D08;
+  --color-espresso-900: #0D0604;
+
+  /* ── Colors: caramel ── */
+  --color-caramel-300: #E8B87A;
+  --color-caramel-400: #D4904A;
+  --color-caramel-500: #C4693A;
+  --color-caramel-600: #A8522A;
+  --color-caramel-700: #8C3E1C;
+
+  /* ── Colors: coral ── */
+  --color-coral-300: #F4A090;
+  --color-coral-400: #F07860;
+  --color-coral-500: #E86048;
+  --color-coral-600: #C84A32;
+  --color-coral-700: #A03420;
+
+  /* ── Colors: amber-bc (prefixed to avoid Tailwind amber conflict) ── */
+  --color-amber-bc-300: #F0CC7A;
+  --color-amber-bc-400: #E8B85A;
+  --color-amber-bc-500: #D4A347;
+  --color-amber-bc-600: #B88030;
+  --color-amber-bc-700: #9A6018;
+
+  /* ── Colors: sage ── */
+  --color-sage-300: #B8C89A;
+  --color-sage-400: #9BAB7A;
+  --color-sage-500: #7B8B5A;
+  --color-sage-600: #5A6A42;
+  --color-sage-700: #3C4A28;
+
+  /* ── Colors: rose-bc (prefixed to avoid Tailwind rose conflict) ── */
+  --color-rose-bc-300: #E8AAC0;
+  --color-rose-bc-400: #D98AA0;
+  --color-rose-bc-500: #C96B8A;
+  --color-rose-bc-600: #A84E6E;
+  --color-rose-bc-700: #883454;
+
+  /* ── Semantic background aliases ── */
+  --color-bg-page:     #F2E6D0;
+  --color-bg-elevated: #FDF8F0;
+  --color-bg-card:     #FFFFFF;
+  --color-bg-dark:     #1A0D08;
+  --color-bg-muted:    #F9F0E0;
+
+  /* ── Border radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-3xl:  32px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs:  0 1px 2px rgba(26, 13, 8, 0.06);
+  --shadow-sm:  0 2px 4px rgba(26, 13, 8, 0.08), 0 1px 2px rgba(26, 13, 8, 0.04);
+  --shadow-md:  0 4px 12px rgba(26, 13, 8, 0.10), 0 2px 4px rgba(26, 13, 8, 0.06);
+  --shadow-lg:  0 8px 24px rgba(26, 13, 8, 0.12), 0 4px 8px rgba(26, 13, 8, 0.08);
+  --shadow-xl:  0 16px 40px rgba(26, 13, 8, 0.14), 0 8px 16px rgba(26, 13, 8, 0.08);
+  --shadow-2xl: 0 24px 64px rgba(26, 13, 8, 0.18), 0 12px 24px rgba(26, 13, 8, 0.10);
+}
