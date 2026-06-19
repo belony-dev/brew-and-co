@@ -125,3 +125,74 @@ dialog::backdrop {
   background: rgba(26, 13, 8, 0.55);
   backdrop-filter: blur(4px);
 }
+
+/* ── n8n Chat — Belo'Coffee brand overrides ─────── */
+:root {
+  /* Core palette */
+  --chat--color--primary:            #C4693A; /* caramel-500 */
+  --chat--color--primary-shade-50:   #A8522A; /* caramel-600 */
+  --chat--color--primary--shade-100: #8C3E1C; /* caramel-700 */
+  --chat--color--secondary:          #C4693A; /* user bubble bg */
+  --chat--color-dark:                #1A0D08; /* espresso-800  */
+  --chat--color-light:               #FDF8F0; /* cream-50      */
+  --chat--color-light-shade-50:      #F2E6D0; /* cream-200     */
+  --chat--color-light-shade-100:     #E8D5B7; /* cream-300     */
+  --chat--color-typing:              #5C3220; /* espresso-500  */
+
+  /* Typography */
+  --chat--font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* Toggle (floating action button) */
+  --chat--toggle--background:        #1A0D08; /* espresso-800  */
+  --chat--toggle--hover--background: #2D160A; /* espresso-700  */
+  --chat--toggle--active--background:#2D160A;
+  --chat--toggle--color:             #FFFFFF;
+  --chat--toggle--border-radius:     50%;
+
+  /* Window */
+  --chat--window--border-radius:     12px;
+
+  /* Header */
+  --chat--header--background:        #1A0D08; /* espresso-800  */
+  --chat--header--color:             #FFFFFF;
+
+  /* Messages */
+  --chat--message--border-radius:    10px;
+  --chat--message--bot--background:  #FDF8F0; /* cream-50      */
+  --chat--message--bot--color:       #1A0D08;
+  --chat--message--user--background: #C4693A; /* caramel-500   */
+  --chat--message--user--color:      #FFFFFF;
+
+  /* Input */
+  --chat--input--send--button--background:       #C4693A;
+  --chat--input--send--button--background-hover: #A8522A;
+  --chat--input--send--button--color:            #FFFFFF;
+
+  /* Primary button (Get Started) */
+  --chat--button--background--primary:        #C4693A;
+  --chat--button--background--primary--hover: #A8522A;
+  --chat--button--color--primary:             #FFFFFF;
+  --chat--button--border--primary:            transparent;
+
+  /* Body */
+  --chat--body--background: #FDF8F0;
+}
+
+/* Coffee cup icon in the toggle button */
+.chat-window-toggle svg { display: none; }
+.chat-window-toggle::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 8h1a4 4 0 010 8h-1'/%3E%3Cpath d='M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z'/%3E%3Cline x1='6' y1='2' x2='6' y2='4'/%3E%3Cline x1='10' y1='2' x2='10' y2='4'/%3E%3Cline x1='14' y1='2' x2='14' y2='4'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Header: Playfair Display title to match site font */
+.chat-heading {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+  font-weight: 700 !important;
+}
