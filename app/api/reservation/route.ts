@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const WEBHOOK_URL = process.env.RESERVATION_WEBHOOK_URL ?? "";
-const WEBHOOK_SECRET = "brew-co";
+const WEBHOOK_SECRET = "brew-dash-co";
 
 export async function POST(req: NextRequest) {
   if (!WEBHOOK_URL) {
