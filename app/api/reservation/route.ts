@@ -1,16 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const WEBHOOK_URL = process.env.RESERVATION_WEBHOOK_URL ?? "";
+const WEBHOOK_URL = "https://belo-dev.app.n8n.cloud/webhook-test/make_reservation";
 const WEBHOOK_SECRET = "brew-dash-co";
 
 export async function POST(req: NextRequest) {
-  if (!WEBHOOK_URL) {
-    return NextResponse.json(
-      { error: "Reservation service not configured." },
-      { status: 503 }
-    );
-  }
-
   const { guestName, groupSize, bookingTime } = await req.json();
 
   if (!guestName || !groupSize || !bookingTime) {
