@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({
       guest_name: guestName,
-      group_size: groupSize,
+      party_size: groupSize,
       booking_time: bookingTime,
     }),
   });
