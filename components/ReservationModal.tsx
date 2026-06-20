@@ -48,6 +48,15 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
     }
   }, [open]);
 
+  function toISO(date: string, time: string) {
+    const [hourMin, period] = time.split(" ");
+    const [h, m] = hourMin.split(":").map(Number);
+    let hour = h;
+    if (period === "PM" && h !== 12) hour += 12;
+    if (period === "AM" && h === 12) hour = 0;
+    return `${date}T${String(hour).padStart(2, "0")}:${String(m).padStart(2, "0")}:00`;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
@@ -60,7 +69,7 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
         body: JSON.stringify({
           guestName: form.name,
           groupSize: form.partySize,
-          bookingTime: `${form.date} at ${form.time}`,
+          bookingTime: toISO(form.date, form.time),
         }),
       });
 
