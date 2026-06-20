@@ -18,7 +18,8 @@ for (let h = 9; h <= 21; h++) {
 
 export default function ReservationModal({ open, onClose }: ReservationModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({
     name: "",
     partySize: "2",
@@ -47,14 +48,37 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
     }
   }, [open]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
-    setTimeout(() => setStatus("success"), 1200);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          guestName: form.name,
+          groupSize: form.partySize,
+          bookingTime: `${form.date} at ${form.time}`,
+        }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error ?? "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   }
 
   function handleClose() {
     setStatus("idle");
+    setErrorMsg("");
     setForm({ name: "", partySize: "2", date: "", time: "10:00 AM" });
     onClose();
   }
@@ -183,6 +207,12 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
                 </div>
               </div>
 
+              {status === "error" && (
+                <p className="text-coral-400 text-sm bg-coral-500/10 border border-coral-500/20 rounded-xl px-4 py-3">
+                  {errorMsg}
+                </p>
+              )}
+
               <button
                 type="submit"
                 disabled={status === "loading"}
@@ -196,6 +226,8 @@ export default function ReservationModal({ open, onClose }: ReservationModalProp
                     </svg>
                     Reserving your spot…
                   </>
+                ) : status === "error" ? (
+                  "Try Again"
                 ) : (
                   "Confirm Reservation"
                 )}
